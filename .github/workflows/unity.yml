@@ -9,5 +9,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Build
-        run: ./NcmbFcmPlugin/gradlew build
+      - name: Run tests
+        uses: webbertakken/unity-test-runner@v1.3
+        with:
+          unityVersion: 2019.2.11f1
+      - name: Build project
+        uses: webbertakken/unity-builder@v0.10
+        with:
+          unityVersion: 2019.2.11f1
+          targetPlatform: WebGL
+      - uses: actions/upload-artifact@v1
+        with:
+          name: Build
+          path: build
